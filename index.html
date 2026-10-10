@@ -1,0 +1,3389 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Income World BD</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f1f7f3;
+    color: #183529;
+    padding-bottom: 80px;
+}
+
+header {
+    background: linear-gradient(135deg, #087a45, #11ad68);
+    color: white;
+    padding: 20px 16px;
+    border-radius: 0 0 25px 25px;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.badge {
+    background: #ffffff30;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.balance-card {
+    background: white;
+    color: #145c39;
+    margin-top: 22px;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px #00000010;
+}
+
+.balance-label {
+    font-size: 14px;
+    color: #64756c;
+}
+
+.balance {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.balance-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.primary {
+    background: #078747;
+    color: white;
+}
+
+.secondary {
+    background: #e5f7ed;
+    color: #087a45;
+}
+
+.balance-actions button {
+    flex: 1;
+}
+
+.container {
+    padding: 17px;
+    max-width: 650px;
+    margin: auto;
+}
+
+.section-title {
+    font-size: 19px;
+    margin: 20px 0 12px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.card {
+    background: white;
+    padding: 17px;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px #00000008;
+}
+
+.card-icon {
+    font-size: 27px;
+    margin-bottom: 9px;
+}
+
+.card h3 {
+    font-size: 15px;
+    margin-bottom: 7px;
+}
+
+.card p {
+    color: #6d7d74;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.card button {
+    margin-top: 12px;
+    width: 100%;
+}
+
+.wide-card {
+    background: white;
+    border-radius: 15px;
+    padding: 17px;
+    margin-bottom: 12px;
+}
+
+.wide-card p {
+    color: #68786e;
+    font-size: 14px;
+    margin-top: 7px;
+    line-height: 1.7;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    margin-top: 7px;
+    margin-bottom: 14px;
+    border: 1px solid #d7e4db;
+    border-radius: 9px;
+    background: white;
+    font-size: 15px;
+    outline-color: #078747;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.form-button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 4px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 9px 2px;
+    box-shadow: 0 -3px 15px #00000010;
+    z-index: 10;
+}
+
+.bottom-nav button {
+    flex: 1;
+    background: transparent;
+    color: #6b7c71;
+    padding: 5px 1px;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.bottom-nav button span {
+    font-size: 21px;
+}
+
+.bottom-nav button.selected {
+    color: #078747;
+    background: #e8f8ef;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 9px;
+    background: #e8f8ef;
+    color: #087a45;
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.6;
+    display: none;
+}
+
+.muted {
+    color: #708077;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.auth-wrapper {
+    max-width: 450px;
+    margin: 35px auto;
+    padding: 18px;
+}
+
+.auth-box {
+    background: white;
+    border-radius: 20px;
+    padding: 23px;
+    box-shadow: 0 5px 20px #0000000b;
+}
+
+.auth-logo {
+    text-align: center;
+    color: #078747;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #728078;
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.auth-switch button {
+    background: transparent;
+    color: #078747;
+    padding: 5px;
+}
+
+.password-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.password-row input {
+    flex: 1;
+    min-width: 0;
+}
+
+.password-row button {
+    margin-top: -7px;
+    background: #e8f8ef;
+    color: #087a45;
+    padding: 12px 10px;
+}
+
+.notice {
+    background: #fff7df;
+    color: #785b0b;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 15px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #edf1ed;
+    margin: 14px 0;
+}
+
+@media (max-width: 360px) {
+    .logo { font-size: 18px; }
+    .balance { font-size: 27px; }
+    .container { padding: 12px; }
+}
+</style>
+  <style>
+.deposit-card,
+#withdraw .card {
+    background: #ffffff;
+    padding: 16px;
+    margin: 12px 0;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px #00000012;
+}
+
+#deposit label,
+#withdraw label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #222222;
+}
+
+#deposit .form-input,
+#withdraw .form-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    background: #ffffff;
+}
+
+.number-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px dashed #159447;
+    border-radius: 8px;
+    background: #f0fff5;
+}
+
+.number-box button,
+.primary-btn {
+    border: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.number-box button {
+    background: #159447;
+    color: white;
+}
+
+.primary-btn {
+    width: 100%;
+    background: #087b43;
+    color: white;
+    margin-top: 14px;
+}
+
+#depositMessage,
+#withdrawMessage {
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.request-item {
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+  </style>
+ <style>
+.deposit-card,
+#withdraw .card {
+    background: #ffffff;
+    padding: 16px;
+    margin: 12px 0;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px #00000012;
+}
+
+#deposit label,
+#withdraw label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #222222;
+}
+
+#deposit .form-input,
+#withdraw .form-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    background: #ffffff;
+}
+
+.number-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px dashed #159447;
+    border-radius: 8px;
+    background: #f0fff5;
+}
+
+.number-box button,
+.primary-btn {
+    border: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.number-box button {
+    background: #159447;
+    color: white;
+}
+
+.primary-btn {
+    width: 100%;
+    background: #087b43;
+    color: white;
+    margin-top: 14px;
+}
+
+#depositMessage,
+#withdrawMessage {
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.request-item {
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+ </style> 
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAHy799NVgYx-uqmDVyKKegee8n5vsxCaI",
+  authDomain: "incame-world-bd.firebaseapp.com",
+  projectId: "incame-world-bd",
+  storageBucket: "incame-world-bd.firebasestorage.app",
+  messagingSenderId: "519988425886",
+  appId: "1:519988425886:web:3bb549cb61dedbc154778f",
+  measurementId: "G-0HNSL3QG6Z"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+window.firebaseApp = app;
+window.firebaseAuth = auth;
+window.firebaseDB = db;
+
+console.log("Firebase সংযোগের কোড চালু হয়েছে।");
+  </script>
+</head>
+
+<body>
+
+<!-- রেজিস্ট্রেশন ও লগইন -->
+<div id="authArea" class="auth-wrapper">
+    <div class="auth-box">
+
+        <div class="auth-logo">🌿 Income World BD</div>
+        <p class="auth-subtitle">আপনার অ্যাকাউন্ট তৈরি করুন</p>
+
+        <div id="authMessage" class="message"></div>
+
+        <!-- Registration -->
+        <form id="registerForm">
+
+            <label>আপনার নাম</label>
+            <input id="regName" type="text"
+                   placeholder="সম্পূর্ণ নাম লিখুন" required>
+
+            <label>মোবাইল নম্বর</label>
+            <input id="regMobile" type="tel"
+                   placeholder="মোবাইল নম্বর লিখুন"
+                   required maxlength="20">
+
+            <label>পাসওয়ার্ড</label>
+            <div class="password-row">
+                <input id="regPassword" type="password"
+                       placeholder="পাসওয়ার্ড দিন"
+                       minlength="6" required>
+                <button type="button"
+                        onclick="togglePassword('regPassword',this)">
+                    দেখুন
+                </button>
+            </div>
+
+            <label>কনফার্ম পাসওয়ার্ড</label>
+            <div class="password-row">
+                <input id="regConfirm" type="password"
+                       placeholder="আবার পাসওয়ার্ড দিন"
+                       minlength="6" required>
+                <button type="button"
+                        onclick="togglePassword('regConfirm',this)">
+                    দেখুন
+                </button>
+            </div>
+
+            <!-- রেফার অপশন রেজিস্ট্রেশনের ভিতরে -->
+            <label>রেফারেল কোড (ঐচ্ছিক)</label>
+            <input id="regReferral" type="text"
+                   placeholder="রেফারেল কোড থাকলে লিখুন">
+
+            <button class="primary form-button" type="submit">
+                রেজিস্ট্রেশন করুন
+            </button>
+        </form>
+
+        <!-- Login -->
+        <form id="loginForm" style="display:none">
+
+            <label>মোবাইল নম্বর</label>
+            <input id="loginMobile" type="tel"
+                   placeholder="মোবাইল নম্বর লিখুন" required>
+
+            <label>পাসওয়ার্ড</label>
+            <div class="password-row">
+                <input id="loginPassword" type="password"
+                       placeholder="পাসওয়ার্ড লিখুন" required>
+                <button type="button"
+                        onclick="togglePassword('loginPassword',this)">
+                    দেখুন
+                </button>
+            </div>
+
+            <button class="primary form-button" type="submit">
+                লগইন করুন
+            </button>
+        </form>
+
+        <div class="auth-switch">
+            <span id="switchText">আগে অ্যাকাউন্ট আছে?</span>
+            <button id="switchButton" type="button"
+                    onclick="switchAuth()">
+                লগইন করুন
+            </button>
+        </div>
+
+        <div class="notice">
+            ⚠️ এটি প্রাথমিক ডেমো সংস্করণ। অ্যাকাউন্টের তথ্য
+            এই ব্রাউজারের লোকাল স্টোরেজে রাখা হয়।
+        </div>
+
+    </div>
+</div>
+
+
+<!-- মূল অ্যাপ -->
+<div id="appArea" style="display:none">
+
+    <header>
+        <div class="header-top">
+            <div class="logo">🌿 Income World BD</div>
+            <div class="badge">BD ৳ টাকা</div>
+        </div>
+
+        <div class="balance-card">
+            <div class="balance-label">আপনার মোট ব্যালেন্স</div>
+            <div class="balance" id="headerBalance">৳0.00</div>
+
+            <div class="balance-label">
+                স্বাগতম, <span id="headerName">ব্যবহারকারী</span>
+            </div>
+
+            <div class="balance-actions">
+                <button class="primary" onclick="showPage('deposit')">
+                    ＋ ডিপোজিট
+                </button>
+                <button class="secondary" onclick="showPage('withdraw')">
+                    ↗ উইথড্র
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- HOME -->
+        <section id="home" class="page active">
+
+            <h2 class="section-title">🏠 হোম ড্যাশবোর্ড</h2>
+
+            <div class="grid">
+<div class="card">
+                    <div class="card-icon">🧮</div>
+                    <h3>অংক করে ইনকাম</h3>
+                    <p>সঠিক উত্তর দিলে ৳0.25 পুরস্কার!</p>
+                    <button class="primary"
+                            onclick="showPage('math')">
+                        অংক শুরু করুন
+                    </button>
+</div>
+                <div class="card">
+                    <div class="card-icon">💰</div>
+                    <h3>মোট ব্যালেন্স</h3>
+                    <p id="homeBalance">৳0.00</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3>রেফারেল</h3>
+                    <p id="homeReferrals">0 জন</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎬</div>
+                    <h3>ভিডিও টাস্ক</h3>
+                    <p>প্রতি সম্পন্ন ডেমো টাস্কে ৳0.25</p>
+                    <button class="primary"
+                            onclick="showPage('tasks')">
+                        টাস্ক দেখুন
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">⭐</div>
+                    <h3>VIP মেম্বারশিপ</h3>
+                    <p>VIP সংক্রান্ত তথ্য দেখুন</p>
+                    <button class="secondary"
+                            onclick="showPage('vip')">
+                        VIP দেখুন
+                    </button>
+                </div>
+
+            </div>
+
+            <h2 class="section-title">⚡ দ্রুত মেনু</h2>
+
+            <div class="grid">
+
+                <div class="card">
+                    <div class="card-icon">🎁</div>
+                    <h3>স্ক্র্যাচ কার্ড</h3>
+                    <p>ডেমো স্ক্র্যাচ কার্ড</p>
+                    <button class="secondary"
+                            onclick="showPage('scratch')">
+                        খুলুন
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎡</div>
+                    <h3>স্পিন</h3>
+                    <p>ডেমো স্পিন পেজ</p>
+                    <button class="secondary"
+                            onclick="showPage('spin')">
+                        খুলুন
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📜</div>
+                    <h3>লেনদেনের ইতিহাস</h3>
+                    <p>আপনার কার্যক্রম দেখুন</p>
+                    <button class="secondary"
+                            onclick="showPage('history')">
+                        ইতিহাস
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">👤</div>
+                    <h3>আমার প্রোফাইল</h3>
+                    <p>অ্যাকাউন্টের তথ্য</p>
+                    <button class="secondary"
+                            onclick="showPage('profile')">
+                        প্রোফাইল
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TASKS -->
+        <<!-- TASKS PAGE -->
+<section id="tasks" class="page">
+
+    <h2 class="section-title">🎬 আয়ের টাস্ক</h2>
+
+    <!-- ভিডিও টাস্ক ১ -->
+    <div class="wide-card" style="margin-bottom:18px">
+
+        <h3>🎥 ভিডিও টাস্ক ১</h3>
+
+        <p>পুরস্কার: <strong>৳0.25 (২৫ পয়সা)</strong></p>
+
+        <video id="taskVideo1"
+               controls
+               playsinline
+               style="width:100%;border-radius:10px;margin-top:12px">
+            <source src="video1.mp4" type="video/mp4">
+            আপনার ব্রাউজার ভিডিও চালাতে পারছে না।
+        </video>
+
+        <button class="primary"
+                id="taskButton1"
+                style="width:100%;margin-top:12px"
+                onclick="completeVideoTask(1)">
+            টাস্ক সম্পন্ন করুন
+        </button>
+
+        <p id="taskStatus1" class="muted">
+            ভিডিওটি সম্পূর্ণ দেখুন।
+        </p>
+
+    </div>
+
+    <!-- ভিডিও টাস্ক ২ -->
+    <div class="wide-card">
+
+        <h3>🎥 ভিডিও টাস্ক ২</h3>
+
+        <p>পুরস্কার: <strong>৳0.25 (২৫ পয়সা)</strong></p>
+
+        <video id="taskVideo2"
+               controls
+               playsinline
+               style="width:100%;border-radius:10px;margin-top:12px">
+            <source src="video2.mp4" type="video/mp4">
+            আপনার ব্রাউজার ভিডিও চালাতে পারছে না।
+        </video>
+
+        <button class="primary"
+                id="taskButton2"
+                style="width:100%;margin-top:12px"
+                onclick="completeVideoTask(2)">
+            টাস্ক সম্পন্ন করুন
+        </button>
+
+        <p id="taskStatus2" class="muted">
+            ভিডিওটি সম্পূর্ণ দেখুন।
+        </p>
+
+    </div>
+
+</section>
+      <section id="math" class="page"><h2 class="section-title">🧮 অংক করে ইনকাম</h2>
+
+<div class="wide-card">
+
+    <h3>সহজ অংকের উত্তর দাও</h3>
+
+    <p>প্রতিটি সঠিক উত্তরের পুরস্কার ৳০.২৫ (২৫ পয়সা)।</p>
+
+    <h2 id="mathQuestion">5 + 3 = ?</h2>
+
+    <input
+        type="number"
+        id="mathAnswer"
+        placeholder="উত্তর লিখুন"
+        style="width:100%;padding:12px;margin:12px 0;border-radius:8px;"
+    >
+
+    <button
+        class="primary"
+        id="mathSubmit"
+        onclick="checkMathAnswer()"
+        style="width:100%;">
+        উত্তর জমা দিন
+    </button>
+
+    <p id="mathStatus" class="muted"></p>
+
+    <button
+        class="secondary"
+        onclick="showPage('home')"
+        style="width:100%;margin-top:10px;">
+        হোমে ফিরে যান
+    </button>
+
+</div>
+
+      </section>
+        </>
+
+<!-- VIDEO TASKS -->
+<section id="tasks" class="page">
+
+    <h2 class="section-title">🎬 আয়ের টাস্ক</h2>
+
+    <!-- ভিডিও ১ -->
+    <div class="wide-card" style="margin-bottom:18px">
+
+        <h3>🎥 ভিডিও ১</h3>
+
+        <p>পুরস্কার: <strong>৳0.25 (২৫ পয়সা)</strong></p>
+
+        <video id="taskVideo1"
+               controls
+               playsinline
+               style="width:100%;border-radius:10px;margin-top:12px">
+            <source src="video1.mp4" type="video/mp4">
+        </video>
+
+        <button class="primary"
+                id="taskButton1"
+                style="width:100%;margin-top:12px"
+                onclick="completeVideoTask(1)">
+            টাস্ক সম্পন্ন করুন
+        </button>
+
+        <p id="taskStatus1" class="muted">
+            ভিডিওটি সম্পূর্ণ দেখুন।
+        </p>
+
+    </div>
+
+    <!-- ভিডিও ২ -->
+    <div class="wide-card">
+
+        <h3>🎥 ভিডিও ২</h3>
+
+        <p>পুরস্কার: <strong>৳0.25 (২৫ পয়সা)</strong></p>
+
+        <video id="taskVideo2"
+               controls
+               playsinline
+               style="width:100%;border-radius:10px;margin-top:12px">
+            <source src="video2.mp4" type="video/mp4">
+        </video>
+
+        <button class="primary"
+                id="taskButton2"
+                style="width:100%;margin-top:12px"
+                onclick="completeVideoTask(2)">
+            টাস্ক সম্পন্ন করুন
+        </button>
+
+        <p id="taskStatus2" class="muted">
+            ভিডিওটি সম্পূর্ণ দেখুন।
+        </p>
+
+    </div>
+
+</section>
+        <!-- REFERRAL --><section id="referral" class="page"><h2 class="section-title">👥 রেফারেল সিস্টেম</h2>
+
+<div class="wide-card" style="text-align:center">
+
+    <div style="font-size:55px">🎁</div>
+
+    <h3>বন্ধুদের আমন্ত্রণ জানাও</h3>
+
+    <p class="muted">
+        আপনার রেফারেল লিংক বন্ধুদের সঙ্গে শেয়ার করুন।
+    </p>
+
+    <hr>
+
+    <h3>🔑 আপনার রেফারেল কোড</h3>
+
+    <p id="myReferralCode"
+       style="font-size:24px;font-weight:bold;margin:15px 0">
+        IWBD000000
+    </p>
+
+    <button class="primary"
+            style="width:100%;margin-bottom:10px"
+            onclick="copyReferral()">
+        📋 কোড কপি করুন
+    </button>
+
+    <h3 style="margin-top:20px">🔗 আপনার রেফারেল লিংক</h3>
+
+    <input id="myReferralLink"
+           type="text"
+           readonly
+           value=""
+           style="width:100%;padding:12px;
+           box-sizing:border-box;margin:10px 0;
+           border-radius:8px">
+
+    <button class="primary"
+            style="width:100%;margin-bottom:10px"
+            onclick="copyReferralLink()">
+        🔗 লিংক কপি করুন
+    </button>
+
+    <button class="primary"
+            style="width:100%;background:#25D366"
+            onclick="shareReferral()">
+        📤 বন্ধুদের সঙ্গে শেয়ার করুন
+    </button>
+
+    <hr style="margin:20px 0">
+
+    <h3>👥 মোট রেফারেল</h3>
+
+    <p id="referralCount"
+       style="font-size:25px;font-weight:bold">
+        0 জন
+    </p>
+
+    <p class="muted" style="margin-top:12px;font-size:13px">
+        প্রকৃত রেফারেল সংখ্যা দেখাতে ব্যবহারকারীর নিবন্ধন
+        এবং সার্ভারের মাধ্যমে রেফারেল যাচাই যুক্ত করতে হবে।
+    </p>
+
+</div>
+
+</section><script>
+function getReferralCode() {
+    let code = localStorage.getItem("iwbd_referral_code");
+
+    if (!code) {
+        code = "IWBD" +
+            Math.random().toString(36).substring(2, 8).toUpperCase();
+
+        localStorage.setItem("iwbd_referral_code", code);
+    }
+
+    return code;
+}
+
+function setupReferral() {
+    const code = getReferralCode();
+    const codeElement = document.getElementById("myReferralCode");
+    const linkElement = document.getElementById("myReferralLink");
+
+    if (codeElement) codeElement.textContent = code;
+
+    if (linkElement) {
+        linkElement.value =
+            window.location.href.split("?")[0] +
+            "?ref=" + encodeURIComponent(code);
+    }
+}
+
+function copyReferral() {
+    const code = getReferralCode();
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(code)
+            .then(() => alert("রেফারেল কোড কপি হয়েছে!"))
+            .catch(() => prompt("কোডটি কপি করুন:", code));
+    } else {
+        prompt("কোডটি কপি করুন:", code);
+    }
+}
+
+function copyReferralLink() {
+    const link = document.getElementById("myReferralLink").value;
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(link)
+            .then(() => alert("রেফারেল লিংক কপি হয়েছে!"))
+            .catch(() => prompt("লিংকটি কপি করুন:", link));
+    } else {
+        prompt("লিংকটি কপি করুন:", link);
+    }
+}
+
+function shareReferral() {
+    const link = document.getElementById("myReferralLink").value;
+    const message = "আমি Income World BD ব্যবহার করছি। এই লিংক দিয়ে যোগ দিন: " + link;
+
+    if (navigator.share) {
+        navigator.share({
+            title: "Income World BD",
+            text: message,
+            url: link
+        }).catch(() => {});
+    } else {
+        window.open(
+            "https://wa.me/?text=" + encodeURIComponent(message),
+            "_blank"
+        );
+    }
+}
+
+setupReferral();
+</script>
+
+
+        <!-- <!-- PREMIUM VIP SECTION -->
+<<section id="vip" class="page">
+
+    <h2 class="section-title">👑 প্রিমিয়াম VIP মেম্বারশিপ</h2>
+
+    <p style="text-align:center;margin-bottom:20px;">
+        ✨ প্রিমিয়াম VIP প্যাকেজ ✨
+    </p>
+
+    <div class="premium-vip-grid">
+
+        <!-- VIP 1 -->
+        <div class="premium-vip-card vip-gold">
+            <div class="vip-crown">👑</div>
+            <div class="vip-level">VIP 1</div>
+            <h3>PREMIUM GOLD</h3>
+
+            <div class="vip-front-text">আপনার ভাগ্য যাচাই করুন</div>
+
+            <div class="vip-details">
+                <p>💳 মূল্য: <strong>৳৫০০</strong></p>
+                <p>📅 মেয়াদ: <strong>২৫ দিন</strong></p>
+                <p>🎁 দৈনিক স্ক্র্যাচ: <strong>১টি</strong></p>
+                <p>💰 প্রতি স্ক্র্যাচে: <strong></strong></p>
+            </div>
+
+            <button type="button" class="premium-buy"
+                    onclick="selectVip(1)">BUY NOW</button>
+        </div>
+
+        <!-- VIP 2 -->
+        <div class="premium-vip-card vip-silver">
+            <div class="vip-crown">👑</div>
+            <div class="vip-level">VIP 2</div>
+            <h3>ROYAL SILVER</h3>
+
+            <div class="vip-front-text">আপনার ভাগ্য যাচাই করুন</div>
+
+            <div class="vip-details">
+                <p>💳 মূল্য: <strong>৳১,০০০</strong></p>
+                <p>📅 মেয়াদ: <strong>৪০ দিন</strong></p>
+                <p>🎁 দৈনিক স্ক্র্যাচ: <strong>২টি</strong></p>
+                <p>💰 প্রতি স্ক্র্যাচে: <strong></strong></p>
+            </div>
+
+            <button type="button" class="premium-buy"
+                    onclick="selectVip(2)">BUY NOW</button>
+        </div>
+
+        <!-- VIP 3 -->
+        <div class="premium-vip-card vip-diamond">
+            <div class="vip-crown">💎</div>
+            <div class="vip-level">VIP 3</div>
+            <h3>ROYAL DIAMOND</h3>
+
+            <div class="vip-front-text">আপনার ভাগ্য যাচাই করুন</div>
+
+            <div class="vip-details">
+                <p>💳 মূল্য: <strong>৳১,৫০০</strong></p>
+                <p>📅 মেয়াদ: <strong>৫০ দিন</strong></p>
+                <p>🎁 দৈনিক স্ক্র্যাচ: <strong>৩টি</strong></p>
+                <p>💰 প্রতি স্ক্র্যাচে: <strong></strong></p>
+            </div>
+
+            <button type="button" class="premium-buy"
+                    onclick="selectVip(3)">BUY NOW</button>
+        </div>
+
+        <!-- VIP 4 -->
+        <div class="premium-vip-card vip-royal">
+            <div class="vip-crown">👑</div>
+            <div class="vip-level">VIP 4</div>
+            <h3>ROYAL PREMIUM</h3>
+
+            <div class="vip-front-text">আপনার ভাগ্য যাচাই করুন</div>
+
+            <div class="vip-details">
+                <p>💳 মূল্য: <strong>৳২,০০০</strong></p>
+                <p>📅 মেয়াদ: <strong>৬০ দিন</strong></p>
+                <p>🎁 দৈনিক স্ক্র্যাচ: <strong>৪টি</strong></p>
+                <p>💰 প্রতি স্ক্র্যাচে: <strong></strong></p>
+            </div>
+
+            <button type="button" class="premium-buy"
+                    onclick="selectVip(4)">BUY NOW</button>
+        </div>
+
+        <!-- VIP 5 -->
+        <div class="premium-vip-card vip-black">
+            <div class="vip-crown">👑</div>
+            <div class="vip-level">VIP 5</div>
+            <h3>ROYAL ELITE</h3>
+
+            <div class="vip-front-text">আপনার ভাগ্য যাচাই করুন</div>
+
+            <div class="vip-details">
+                <p>💳 মূল্য: <strong>৳৩,০০০</strong></p>
+                <p>📅 মেয়াদ: <strong>৯০ দিন</strong></p>
+                <p>🎁 দৈনিক স্ক্র্যাচ: <strong>৫টি</strong></p>
+                <p>💰 প্রতি স্ক্র্যাচে: <strong></strong></p>
+            </div>
+
+            <button type="button" class="premium-buy"
+                    onclick="selectVip(5)">BUY NOW</button>
+        </div>
+
+    </div>
+
+    <div id="vipMessage" class="message" style="margin-top:15px;"></div>
+
+</section>
+<!-- REFERRAL PAGE -->
+<section id="referral" class="page">
+
+    <h2 class="section-title">👥 রেফার করে আয়</h2>
+
+    <div class="card referral-card">
+
+        <div class="referral-header">
+            <div style="font-size:45px;">🎁</div>
+            <h3>বন্ধুদের আমন্ত্রণ জানান</h3>
+            <p>আপনার রেফার লিংক শেয়ার করুন</p>
+        </div>
+
+        <div class="referral-box">
+            <label>আপনার রেফার কোড</label>
+
+            <div class="referral-code-row">
+                <strong id="myReferralCode">লোড হচ্ছে...</strong>
+
+                <button
+                    type="button"
+                    onclick="copyMyReferralCode()">
+                    📋 কপি
+                </button>
+            </div>
+        </div>
+
+        <div class="referral-box">
+            <label>আপনার রেফার লিংক</label>
+
+            <input
+                type="text"
+                id="myReferralLink"
+                class="form-input"
+                readonly
+                placeholder="রেফার লিংক"
+            >
+
+            <button
+                type="button"
+                class="primary-btn"
+                onclick="copyMyReferralLink()">
+                🔗 লিংক কপি করুন
+            </button>
+        </div>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="card referral-stat">
+            <div style="font-size:30px;">👥</div>
+            <h3>মোট রেফার</h3>
+            <p id="totalReferrals">০</p>
+        </div>
+
+        <div class="card referral-stat">
+            <div style="font-size:30px;">💰</div>
+            <h3>রেফার আয়</h3>
+            <p id="referralEarnings">৳০.০০</p>
+        </div>
+
+    </div>
+
+    <div class="card referral-card">
+        <h3>🎯 রেফার করার শর্ত</h3>
+
+        <div class="referral-rule">
+            <strong>⭐ VIP সদস্য</strong>
+            <p>কমপক্ষে ৫ জন রেফার করতে হবে।</p>
+            <p>সর্বনিম্ন উত্তোলন: ৳১,০০০</p>
+        </div>
+
+        <div class="referral-rule">
+            <strong>👤 সাধারণ সদস্য</strong>
+            <p>কমপক্ষে ৩০ জন রেফার করতে হবে।</p>
+            <p>সর্বনিম্ন উত্তোলন: ৳১,৫০০</p>
+        </div>
+    </div>
+
+    <div class="card referral-card">
+        <h3>📋 আপনার রেফার তালিকা</h3>
+
+        <div id="referralList">
+            এখনো কোনো রেফার নেই।
+        </div>
+    </div>
+<!-- অংক করে ইনকাম -->
+<div class="card math-income-card">
+
+    <div style="font-size: 40px;">🧮</div>
+
+    <h3>অংক করে ইনকাম</h3>
+
+    <p>সহজ অংকের প্রশ্নের উত্তর দিয়ে পয়েন্ট অর্জন করুন।</p>
+
+    <div id="mathQuestion" style="font-size: 22px; font-weight: bold;">
+        ৫ + ৩ = কত?
+    </div>
+
+    <input
+        type="number"
+        id="mathAnswer"
+        class="form-input"
+        placeholder="উত্তর লিখুন"
+    >
+
+    <button
+        type="button"
+        class="primary-btn"
+        onclick="checkMathAnswer()">
+        উত্তর জমা দিন
+    </button>
+
+    <p id="mathMessage"></p>
+
+    <p>
+        আজকের সঠিক উত্তর:
+        <strong id="mathCorrectCount">০</strong>
+    </p>
+
+</div>
+</section>
+<style>
+.premium-vip-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding: 10px;
+}
+
+.premium-vip-card {
+    padding: 16px 10px;
+    text-align: center;
+    color: white;
+    border-radius: 16px;
+    border: 2px solid #d4af37;
+    box-shadow: 0 5px 18px #0003;
+    overflow-wrap: anywhere;
+}
+
+.vip-gold {
+    background: linear-gradient(145deg, #473000, #c99b25, #201600);
+}
+
+.vip-silver {
+    background: linear-gradient(145deg, #202a38, #7c8797, #18202c);
+}
+
+.vip-diamond {
+    background: linear-gradient(145deg, #062b45, #1689b8, #071b37);
+}
+
+.vip-royal {
+    background: linear-gradient(145deg, #3c075e, #9b4bd0, #23043a);
+}
+
+.vip-black {
+    background: linear-gradient(145deg, #050505, #414141, #000);
+}
+
+.vip-crown {
+    font-size: 30px;
+}
+
+.vip-level {
+    font-size: 19px;
+    font-weight: bold;
+    color: #ffe58a;
+}
+
+.premium-vip-card h3 {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.vip-front-text {
+    font-size: 12px;
+    margin: 12px 0;
+}
+
+.vip-details {
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.vip-details p {
+    margin: 6px 0;
+}
+
+.premium-buy {
+    width: 100%;
+    padding: 11px 5px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 9px;
+    background: linear-gradient(90deg, #d4af37, #fff0a3, #d4af37);
+    color: #251800;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#vipMessage {
+    padding: 0 10px;
+}
+
+@media (max-width: 350px) {
+    .premium-vip-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+window.selectVip = function(vipNumber) {
+    const packages = {
+        1: {price: 500, days: 25, scratch: 1, reward: "৳১–৳৬"},
+        2: {price: 1000, days: 40, scratch: 2, reward: "৳১০–৳২০"},
+        3: {price: 1500, days: 50, scratch: 3, reward: "৳২০–৳২৫"},
+        4: {price: 2000, days: 60, scratch: 4, reward: "৳২৫–৳৩৫"},
+        5: {price: 3000, days: 90, scratch: 5, reward: "৳৩৫–৳৪৬"}
+    };
+
+    const vip = packages[vipNumber];
+    const message = document.getElementById("vipMessage");
+
+    if (!vip || !message) {
+        alert("VIP পেজে সমস্যা হয়েছে!");
+        return;
+    }
+
+    message.innerHTML = `
+        <div style="background:#17152b;color:white;padding:20px;
+        border:2px solid #d4af37;border-radius:15px;text-align:center;">
+            <h3 style="color:#ffe58a;">👑 VIP ${vipNumber}</h3>
+            <h2 style="color:#ffd700;">৳${vip.price}</h2>
+            <p>📅 মেয়াদ: ${vip.days} দিন</p>
+            <p>🎁 দৈনিক স্ক্র্যাচ: ${vip.scratch}টি</p>
+            <p>💰 প্রতি স্ক্র্যাচে পুরস্কার: ${vip.reward}</p>
+            <p>প্যাকেজ নির্বাচন করা হয়েছে।</p>
+            <button type="button"
+                onclick="document.getElementById('vipMessage').innerHTML=''"
+                style="padding:10px 25px;border:0;border-radius:8px;
+                background:#d4af37;font-weight:bold;">
+                বন্ধ করুন
+            </button>
+        </div>
+    `;
+
+    message.scrollIntoView({behavior:"smooth", block:"center"});
+};
+</script>
+<style>
+.premium-vip-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.premium-vip-card {
+    position: relative;
+    padding: 18px 12px;
+    border-radius: 18px;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    border: 2px solid #e8cf75;
+    box-shadow: 0 7px 20px #00000030;
+}
+
+.vip-gold {
+    background: linear-gradient(145deg, #46300a, #c99a20, #73500b);
+}
+
+.vip-silver {
+    background: linear-gradient(145deg, #333943, #b8bec8, #555b65);
+}
+
+.vip-diamond {
+    background: linear-gradient(145deg, #063e50, #16a6b7, #073b60);
+}
+
+.vip-royal {
+    background: linear-gradient(145deg, #390b57, #a54fce, #481060);
+}
+
+.vip-black {
+    background: linear-gradient(145deg, #080808, #494949, #111111);
+}
+
+.vip-crown {
+    font-size: 32px;
+    margin-bottom: 6px;
+}
+
+.vip-level {
+    display: inline-block;
+    padding: 5px 18px;
+    border: 1px solid #ffe8a0;
+    border-radius: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.premium-vip-card h3 {
+    font-size: 15px;
+    margin: 12px 0;
+    letter-spacing: 1px;
+}
+
+.vip-front-text {
+    margin: 15px 0;
+    padding: 12px 5px;
+    border-top: 1px solid #ffffff80;
+    border-bottom: 1px solid #ffffff80;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.vip-details {
+    text-align: left;
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.vip-details p {
+    margin: 5px 0;
+}
+
+.premium-buy {
+    width: 100%;
+    padding: 11px 4px;
+    margin-top: 12px;
+    border: 1px solid #fff1b5;
+    border-radius: 9px;
+    color: #3b2600;
+    background: linear-gradient(90deg, #f5d46c, #fff0b0, #d6a82f);
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.premium-buy:active {
+    transform: scale(.97);
+}
+
+@media (max-width: 350px) {
+    .premium-vip-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+function selectVip(level) {
+    const message = document.getElementById("vipMessage");
+
+    if (message) {
+        message.textContent =
+            "আপনি VIP " + level +
+            " প্যাকেজ নির্বাচন করেছেন। ক্রয়ের আগে প্যাকেজের মূল্য ও মেয়াদ যাচাই করুন।";
+    }
+}
+</script>
+
+
+        <!-- DEPOSIT -->
+        <!-- DEPOSIT PAGE -->
+<section id="deposit" class="page">
+
+    <h2 class="section-title">💳 ডিপোজিট</h2>
+
+    <div class="card deposit-card">
+
+        <label for="depositMethod">পেমেন্ট মাধ্যম নির্বাচন করুন</label>
+
+        <select id="depositMethod" class="form-input">
+            <option value="bkash">বিকাশ</option>
+            <option value="nagad">নগদ</option>
+        </select>
+
+        <p>পেমেন্ট পদ্ধতি: <strong>SEND MONEY</strong></p>
+
+        <label>যে নম্বরে টাকা পাঠাবেন</label>
+
+        <div class="number-box">
+            <strong id="depositNumber">01405058929</strong>
+            <button type="button" onclick="copyDepositNumber()">কপি</button>
+        </div>
+
+        <label for="depositAmount">টাকার পরিমাণ (৳)</label>
+        <input
+            type="number"
+            id="depositAmount"
+            class="form-input"
+            min="1"
+            placeholder="টাকার পরিমাণ লিখুন"
+        >
+
+        <label for="senderNumber">যে নম্বর থেকে টাকা পাঠিয়েছেন</label>
+        <input
+            type="tel"
+            id="senderNumber"
+            class="form-input"
+            placeholder="আপনার মোবাইল নম্বর"
+        >
+
+        <label for="transactionId">ট্রানজেকশন আইডি (TrxID)</label>
+        <input
+            type="text"
+            id="transactionId"
+            class="form-input"
+            placeholder="TrxID লিখুন"
+        >
+
+        <label for="depositScreenshot">পেমেন্টের স্ক্রিনশট</label>
+        <input
+            type="file"
+            id="depositScreenshot"
+            class="form-input"
+            accept="image/*"
+        >
+
+        <button
+            type="button"
+            class="primary-btn"
+            onclick="submitDeposit()"
+        >
+            ডিপোজিট অনুরোধ পাঠান
+        </button>
+
+        <p id="depositMessage"></p>
+
+    </div>
+
+    <div class="card deposit-card">
+        <h3>📋 ডিপোজিটের ইতিহাস</h3>
+        <div id="depositHistory">
+            এখনো কোনো অনুরোধ নেই।
+        </div>
+    </div>
+
+</section>
+
+
+        <!-- WITHDRAW -->
+       <!-- WITHDRAWAL PAGE -->
+<section id="withdraw" class="page">
+
+    <h2 class="section-title">💸 টাকা উত্তোলন</h2>
+
+    <div class="card">
+
+        <label for="withdrawMethod">পেমেন্ট মাধ্যম নির্বাচন করুন</label>
+
+        <select id="withdrawMethod" class="form-input">
+            <option value="bkash">বিকাশ</option>
+            <option value="nagad">নগদ</option>
+        </select>
+
+        <p>টাকা গ্রহণের পদ্ধতি: <strong>SEND MONEY</strong></p>
+
+        <label for="withdrawAmount">কত টাকা তুলবেন?</label>
+
+        <input
+            type="number"
+            id="withdrawAmount"
+            class="form-input"
+            min="1"
+            placeholder="টাকার পরিমাণ লিখুন"
+        >
+
+        <label for="withdrawNumber">টাকা গ্রহণের মোবাইল নম্বর</label>
+
+        <input
+            type="tel"
+            id="withdrawNumber"
+            class="form-input"
+            placeholder="বিকাশ বা নগদ নম্বর লিখুন"
+        >
+
+        <button
+            type="button"
+            class="primary-btn"
+            onclick="submitWithdrawal()"
+        >
+            উত্তোলনের অনুরোধ পাঠান
+        </button>
+
+        <p id="withdrawMessage"></p>
+
+    </div>
+
+    <div class="card">
+
+        <h3>📋 উত্তোলনের ইতিহাস</h3>
+
+        <div id="withdrawHistory">
+            এখনো কোনো উত্তোলনের অনুরোধ নেই।
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- SCRATCH -->
+        <section id="scratch" class="page">
+
+            <h2 class="section-title">🎁 স্ক্র্যাচ কার্ড</h2>
+
+            <div class="wide-card">
+                <p>এটি একটি পরীক্ষামূলক স্ক্র্যাচ কার্ড।</p>
+
+                <button class="primary"
+                        style="width:100%;margin-top:15px"
+                        onclick="demoGame('স্ক্র্যাচ কার্ড')">
+                    কার্ড খুলুন
+                </button>
+
+                <p id="scratchResult"
+                   style="margin-top:15px;font-weight:bold"></p>
+            </div>
+
+        </section>
+
+
+        <!-- SPIN -->
+        <section id="spin" class="page">
+
+            <h2 class="section-title">🎡 স্পিন হুইল</h2>
+
+            <div class="wide-card" style="text-align:center">
+                <div style="font-size:75px;margin:20px">🎡</div>
+
+                <p>ডেমো স্পিন</p>
+
+                <button class="primary"
+                        style="width:100%;margin-top:15px"
+                        onclick="demoGame('স্পিন')">
+                    স্পিন করুন
+                </button>
+
+                <p id="spinResult"
+                   style="margin-top:15px;font-weight:bold"></p>
+
+                <p class="muted" style="margin-top:12px">
+                    এটি পরীক্ষামূলক ফিচার; কোনো পুরস্কার
+                    বা অর্থ জেতার নিশ্চয়তা নেই।
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- HISTORY -->
+        <section id="history" class="page">
+
+            <h2 class="section-title">📜 লেনদেনের ইতিহাস</h2>
+
+            <div id="historyList">
+                <div class="wide-card">
+                    এখনো কোনো লেনদেন নেই।
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- PROFILE -->
+        <section id="profile" class="page">
+
+            <h2 class="section-title">👤 আমার প্রোফাইল</h2>
+
+            <div class="wide-card">
+
+                <div class="card-icon">👤</div>
+
+                <h3 id="profileName">ব্যবহারকারী</h3>
+                <p id="profileMobile">মোবাইল নম্বর</p>
+
+                <hr>
+
+                <p>রেফারেল কোড:</p>
+                <p id="profileReferral"
+                   style="font-weight:bold;margin-top:5px"></p>
+
+                <p style="margin-top:12px">
+                    VIP:
+                    <strong id="profileVIP">নেই</strong>
+                </p>
+
+                <bu
+                                      <button class="primary"
+                            style="width:100%;margin-top:18px"
+                            onclick="logout()">
+                        লগআউট করুন
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- নিচের মেনু -->
+        <nav class="bottom-nav">
+
+            <button class="selected" data-page="home"
+                    onclick="showPage('home')">
+                <span>🏠</span>হোম
+            </button>
+
+            <button data-page="tasks"
+                    onclick="showPage('tasks')">
+                <span>🎬</span>টাস্ক
+            </button>
+
+            <button data-page="referral"
+                    onclick="showPage('referral')">
+                <span>👥</span>রেফার
+            </button>
+
+            <button data-page="vip"
+                    onclick="showPage('vip')">
+                <span>⭐</span>VIP
+            </button>
+
+            <button data-page="profile"
+                    onclick="showPage('profile')">
+                <span>👤</span>প্রোফাইল
+            </button>
+
+        </nav>
+
+    </div>
+
+    <script>
+    "use strict";
+
+    const USERS_KEY = "iwbd_demo_users_v1";
+    const SESSION_KEY = "iwbd_demo_session_v1";
+
+    let users = loadUsers();
+    let currentMobile = localStorage.getItem(SESSION_KEY) || "";
+
+    function loadUsers() {
+        try {
+            return JSON.parse(localStorage.getItem(USERS_KEY) || "{}");
+        } catch (e) {
+            return {};
+        }
+    }
+
+    function saveUsers() {
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    }
+
+    function getUser() {
+        return users[currentMobile] || null;
+    }
+
+    function showMessage(id, text) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = text;
+        el.style.display = "block";
+    }
+
+    function hideMessage(id) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = "none";
+    }
+
+    function togglePassword(id, button) {
+        const input = document.getElementById(id);
+
+        if (input.type === "password") {
+            input.type = "text";
+            button.textContent = "লুকান";
+        } else {
+            input.type = "password";
+            button.textContent = "দেখুন";
+        }
+    }
+
+    let registrationMode = true;
+
+    function switchAuth() {
+        registrationMode = !registrationMode;
+
+        document.getElementById("registerForm").style.display =
+            registrationMode ? "block" : "none";
+
+        document.getElementById("loginForm").style.display =
+            registrationMode ? "none" : "block";
+
+        document.getElementById("switchText").textContent =
+            registrationMode ? "আগে অ্যাকাউন্ট আছে?" :
+            "নতুন অ্যাকাউন্ট তৈরি করবেন?";
+
+        document.getElementById("switchButton").textContent =
+            registrationMode ? "লগইন করুন" : "রেজিস্ট্রেশন করুন";
+
+        hideMessage("authMessage");
+    }
+
+    function makeReferralCode() {
+        return "IWBD" +
+            Math.random().toString(36).substring(2, 8).toUpperCase();
+    }
+
+    function addHistory(user, type, amount, note) {
+        if (!Array.isArray(user.history)) {
+            user.history = [];
+        }
+
+        user.history.unshift({
+            type,
+            amount: Number(amount || 0),
+            note,
+            date: new Date().toLocaleString("bn-BD")
+        });
+
+        user.history = user.history.slice(0, 100);
+    }
+
+    document.getElementById("registerForm")
+    .addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById("regName").value.trim();
+        const mobile = document.getElementById("regMobile").value.trim();
+        const password = document.getElementById("regPassword").value;
+        const confirm = document.getElementById("regConfirm").value;
+        const referral = document.getElementById("regReferral")
+            .value.trim().toUpperCase();
+
+        if (!name || !mobile) {
+            showMessage("authMessage", "নাম ও মোবাইল নম্বর দিন।");
+            return;
+        }
+
+        if (password.length < 6) {
+            showMessage("authMessage",
+                "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।");
+            return;
+        }
+
+        if (password !== confirm) {
+            showMessage("authMessage",
+                "দুটি পাসওয়ার্ড মিলছে না।");
+            return;
+        }
+
+        if (users[mobile]) {
+            showMessage("authMessage",
+                "এই নম্বরে অ্যাকাউন্ট আছে। লগইন করুন।");
+            return;
+        }
+
+        if (referral) {
+            const valid = Object.values(users)
+                .some(u => u.referralCode === referral);
+
+            if (!valid) {
+                showMessage("authMessage",
+                    "রেফারেল কোডটি পাওয়া যায়নি।");
+                return;
+            }
+        }
+
+        users[mobile] = {
+            name,
+            mobile,
+            password,
+            referralCode: makeReferralCode(),
+            referredBy: referral,
+            referrals: 0,
+            balance: 0,
+            tasksCompleted: 0,
+            vip: false,
+            history: []
+        };
+
+        if (referral) {
+            const inviter = Object.values(users)
+                .find(u => u.referralCode === referral);
+
+            if (inviter) {
+                inviter.referrals =
+                    Number(inviter.referrals || 0) + 1;
+            }
+        }
+
+        saveUsers();
+        currentMobile = mobile;
+        localStorage.setItem(SESSION_KEY, mobile);
+
+        enterApp();
+        alert("ডেমো অ্যাকাউন্ট তৈরি হয়েছে!");
+    });
+
+    document.getElementById("loginForm")
+    .addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const mobile = document.getElementById("loginMobile")
+            .value.trim();
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+        const user = users[mobile];
+
+        if (!user || user.password !== password) {
+            showMessage("authMessage",
+                "মোবাইল নম্বর অথবা পাসওয়ার্ড ভুল।");
+            return;
+        }
+
+        currentMobile = mobile;
+        localStorage.setItem(SESSION_KEY, mobile);
+        enterApp();
+    });
+
+    function enterApp() {
+        if (!getUser()) return;
+
+        document.getElementById("authArea").style.display = "none";
+        document.getElementById("appArea").style.display = "block";
+
+        refreshUI();
+        showPage("home");
+    }
+
+    function logout() {
+        currentMobile = "";
+        localStorage.removeItem(SESSION_KEY);
+
+        document.getElementById("appArea").style.display = "none";
+        document.getElementById("authArea").style.display = "block";
+
+        document.getElementById("loginForm").reset();
+
+        if (!registrationMode) switchAuth();
+    }
+
+    function showPage(pageId) {
+        document.querySelectorAll(".page").forEach(page => {
+            page.classList.remove("active");
+        });
+
+        const target = document.getElementById(pageId);
+        if (target) target.classList.add("active");
+
+        document.querySelectorAll(".bottom-nav button")
+        .forEach(btn => {
+            btn.classList.toggle(
+                "selected",
+                btn.dataset.page === pageId
+            );
+        });
+
+        refreshUI();
+    }
+
+    function money(value) {
+        return "৳" + Number(value || 0).toFixed(2);
+    }
+
+    function refreshUI() {
+        const user = getUser();
+        if (!user) return;
+
+        document.getElementById("headerName").textContent = user.name;
+        document.getElementById("headerBalance").textContent =
+            money(user.balance);
+
+        document.getElementById("homeBalance").textContent =
+            money(user.balance);
+
+        document.getElementById("homeReferrals").textContent =
+            Number(user.referrals || 0) + " জন";
+
+        document.getElementById("myReferralCode").textContent =
+            user.referralCode;
+
+        document.getElementById("referralCount").textContent =
+            Number(user.referrals || 0) + " জন";
+
+        document.getElementById("profileName").textContent = user.name;
+        document.getElementById("profileMobile").textContent = user.mobile;
+
+        document.getElementById("profileReferral").textContent =
+            user.referralCode;
+
+        document.getElementById("profileVIP").textContent =
+            user.vip ? "আছে" : "নেই";
+
+        document.getElementById("vipStatus").textContent =
+            user.vip ? "আছে" : "সক্রিয় নয়";
+
+        document.getElementById("withdrawBalance").textContent =
+            money(user.balance);
+
+        document.getElementById("withdrawReferrals").textContent =
+            Number(user.referrals || 0) + " জন";
+
+        document.getElementById("taskStatus").textContent =
+            "আজকের ডেমো টাস্ক সম্পন্ন: " +
+            Number(user.tasksCompleted || 0);
+
+        renderHistory(user);
+    }
+
+ function completeVideoTask(number) {
+    const user = getUser();
+    if (!user) return;
+
+    const status = document.getElementById("taskStatus" + number);
+    const button = document.getElementById("taskButton" + number);
+
+    if (!status || !button) {
+        alert("টাস্ক খুঁজে পাওয়া যায়নি।");
+        return;
+    }
+
+    const taskKey = "videoTask" + number + "Completed";
+
+    // পুরস্কার আগে নেওয়া হয়েছে কি না
+    if (localStorage.getItem(taskKey) === "true") {
+        status.textContent = "এই টাস্কের পুরস্কার আগেই নেওয়া হয়েছে।";
+        button.textContent = "সম্পন্ন হয়েছে";
+        button.disabled = true;
+        return;
+    }
+
+    // ১০টি বিজ্ঞাপন সম্পন্ন হয়েছে কি না
+    let completedCount = 0;
+
+    for (let i = 0; i < 10; i++) {
+        if (
+            localStorage.getItem(
+                "iwbd_ad_" + number + "_" + i
+            ) === "true"
+        ) {
+            completedCount++;
+        }
+    }
+
+    if (completedCount < 10) {
+        status.textContent =
+            "এখনো " + (10 - completedCount) +
+            "টি বিজ্ঞাপন বাকি আছে।";
+
+        alert(
+            "পুরস্কার পেতে ১০টি বিজ্ঞাপনই সম্পন্ন করুন।\n" +
+            "সম্পন্ন হয়েছে: " + completedCount + "/10"
+        );
+        return;
+    }
+
+    // পুরস্কার একবারই যোগ হবে
+    user.balance = Number(user.balance || 0) + 0.25;
+
+    user.tasksCompleted =
+        Number(user.tasksCompleted || 0) + 1;
+
+    addHistory(
+        user,
+        "ভিডিও টাস্ক " + number,
+        0.25,
+        "১০টি বিজ্ঞাপন সম্পন্ন"
+    );
+
+    localStorage.setItem(taskKey, "true");
+
+    saveUsers();
+    refreshUI();
+
+    status.textContent =
+        "১০টি বিজ্ঞাপন সম্পন্ন! ৳0.25 যোগ হয়েছে।";
+
+    button.textContent = "সম্পন্ন হয়েছে";
+    button.disabled = true;
+
+    alert("অভিনন্দন! ৳0.25 যোগ হয়েছে।");
+      }
+
+    function copyReferral() {
+        const user = getUser();
+        if (!user) return;
+
+        prompt("আপনার রেফারেল কোড কপি করুন:", user.referralCode);
+    }
+
+    document.getElementById("depositForm")
+    .addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const user = getUser();
+        if (!user) return;
+
+        const amount = Number(
+            document.getElementById("depositAmount").value
+        );
+
+        const method =
+            document.getElementById("depositMethod").value;
+
+        const transaction =
+            document.getElementById("depositTransaction")
+            .value.trim();
+
+        if (!Number.isFinite(amount) || amount <= 0 ||
+            !method || !transaction) {
+            showMessage("depositMessage",
+                "সব তথ্য সঠিকভাবে পূরণ করুন।");
+            return;
+        }
+
+        addHistory(user, "ডিপোজিট অনুরোধ", amount,
+            method + " | " + transaction + " | অপেক্ষমাণ");
+
+        saveUsers();
+        refreshUI();
+
+        showMessage("depositMessage",
+            "অনুরোধ সংরক্ষিত হয়েছে। টাকা যাচাই হয়নি এবং ব্যালেন্স বাড়েনি।");
+
+        this.reset();
+    });
+
+    document.getElementById("withdrawForm")
+    .addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const user = getUser();
+        if (!user) return;
+
+        const amount = Number(
+            document.getElementById("withdrawAmount").value
+        );
+
+        const method =
+            document.getElementById("withdrawMethod").value;
+
+        const number =
+            document.getElementById("withdrawNumber").value.trim();
+
+        const minAmount = user.vip ? 1000 : 1500;
+        const requiredReferrals = user.vip ? 5 : 30;
+
+        if (!Number.isFinite(amount) || amount <= 0) {
+            showMessage("withdrawMessage",
+                "সঠিক টাকার পরিমাণ লিখুন।");
+            return;
+        }
+
+        if (amount < minAmount) {
+            showMessage("withdrawMessage",
+                "ন্যূনতম উত্তোলন " + money(minAmount) + "।");
+            return;
+        }
+
+        if (Number(user.referrals || 0) < requiredReferrals) {
+            showMessage("withdrawMessage",
+                "কমপক্ষে " + requiredReferrals +
+                "টি রেফারেল প্রয়োজন।");
+            return;
+        }
+
+        if (amount > Number(user.balance || 0)) {
+            showMessage("withdrawMessage",
+                "আপনার ব্যালেন্স পর্যাপ্ত নয়।");
+            return;
+        }
+
+        if (!method || !number) {
+            showMessage("withdrawMessage",
+                "পেমেন্ট মাধ্যম ও নম্বর দিন।");
+            return;
+        }
+
+        addHistory(user, "উইথড্র অনুরোধ", amount,
+            method + " | " + number + " | অপেক্ষমাণ");
+
+        saveUsers();
+        refreshUI();
+
+        showMessage("withdrawMessage",
+            "ডেমো অনুরোধ সংরক্ষিত হয়েছে। প্রকৃত টাকা পাঠানো হয়নি।");
+
+        this.reset();
+    });
+
+    function renderHistory(user) {
+        const list = document.getElementById("historyList");
+        const history = Array.isArray(user.history) ?
+            user.history : [];
+
+        list.replaceChildren();
+
+        if (!history.length) {
+            const empty = document.createElement("div");
+            empty.className = "wide-card";
+            empty.textContent = "এখনো কোনো লেনদেন নেই।";
+            list.appendChild(empty);
+            return;
+        }
+
+        history.forEach(item => {
+            const card = document.createElement("div");
+            card.className = "wide-card";
+
+            const title = document.createElement("h3");
+            title.textContent = item.type || "কার্যক্রম";
+
+            const amount = document.createElement("p");
+            amount.textContent = "পরিমাণ: " + money(item.amount);
+
+            const note = document.createElement("p");
+            note.textContent = item.note || "";
+
+            const date = document.createElement("p");
+            date.className = "muted";
+            date.textContent = item.date || "";
+
+            card.append(title, amount, note, date);
+            list.appendChild(card);
+        });
+    }
+function selectVip(level) {
+    const packages = {
+        1: { name: "VIP 1", price: 500, days: 25 },
+        2: { name: "VIP 2", price: 1000, days: 40 },
+        3: { name: "VIP 3", price: 1500, days: 50 },
+        4: { name: "VIP 4", price: 2000, days: 60 },
+        5: { name: "VIP 5", price: 3000, days: 90 }
+    };
+
+    const selected = packages[level];
+
+    if (!selected) return;
+
+    if (!getUser()) {
+        alert("প্রথমে লগইন করুন।");
+        return;
+    }
+
+    sessionStorage.setItem(
+        "selectedVipPackage",
+        JSON.stringify(selected)
+    );
+
+    showPage("deposit");
+
+    document.getElementById("depositAmount").value =
+        selected.price;
+
+    document.getElementById("depositMessage").textContent =
+        selected.name + " | মূল্য: ৳" +
+        selected.price + " | মেয়াদ: " +
+        selected.days + " দিন";
+      }
+    function demoGame(game) {
+        const id = game === "স্পিন" ? "spinResult" : "scratchResult";
+        document.getElementById(id).textContent =
+            "এটি ডেমো। কোনো পুরস্কার যোগ হয়নি।";
+    }
+
+    if (currentMobile && users[currentMobile]) {
+        enterApp();
+    } else {
+        currentMobile = "";
+        localStorage.removeItem(SESSION_KEY);
+    }
+    </script>
+<script>
+window.selectVip = function(vipNumber) {
+    const packages = {
+        1: { price: 500, days: 25, scratch: 1 },
+        2: { price: 1000, days: 40, scratch: 2 },
+        3: { price: 1500, days: 50, scratch: 3 },
+        4: { price: 2000, days: 60, scratch: 4 },
+        5: { price: 3000, days: 90, scratch: 5 }
+    };
+
+    const vip = packages[vipNumber];
+    const message = document.getElementById("vipMessage");
+
+    if (!vip) {
+        alert("VIP প্যাকেজ পাওয়া যায়নি!");
+        return;
+    }
+
+    if (!message) {
+        alert("vipMessage পাওয়া যায়নি! VIP পেজের HTML পরীক্ষা করতে হবে।");
+        return;
+    }
+
+    message.innerHTML = `
+        <div style="background:#17152b;color:white;padding:20px;
+        border:2px solid #d4af37;border-radius:15px;text-align:center;">
+            <h3>👑 VIP ${vipNumber}</h3>
+            <h2 style="color:#ffd700;">৳${vip.price}</h2>
+            <p>📅 মেয়াদ: ${vip.days} দিন</p>
+            <p>🎁 দৈনিক স্ক্র্যাচ: ${vip.scratch}টি</p>
+            <p>প্যাকেজ নির্বাচন করা হয়েছে।</p>
+            <button onclick="document.getElementById('vipMessage').innerHTML=''"
+            style="padding:10px 20px;border:0;border-radius:8px;">
+                বন্ধ করুন
+            </button>
+        </div>
+    `;
+
+    message.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+};
+}
+</script>
+  <!-- ================= VIP SCRATCH CARD SYSTEM ================= -->
+
+<style>
+#vipScratchPage {
+    display: none;
+    padding: 15px;
+    padding-bottom: 90px;
+    color: white;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #101027, #22224b);
+    box-sizing: border-box;
+}
+
+#vipScratchPage * {
+    box-sizing: border-box;
+}
+
+.scratch-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.scratch-header h2 {
+    font-size: 21px;
+    margin: 0;
+    color: #ffd76a;
+}
+
+.scratch-back {
+    border: none;
+    padding: 10px 14px;
+    border-radius: 9px;
+    background: #39395e;
+    color: white;
+    font-weight: bold;
+}
+
+.scratch-package-info {
+    text-align: center;
+    padding: 18px 10px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #30245c, #15152c);
+    border: 1px solid #8c70ff;
+    margin-bottom: 18px;
+}
+
+.scratch-package-info h3 {
+    margin: 0 0 8px;
+    color: #ffe18a;
+    font-size: 23px;
+}
+
+.scratch-package-info p {
+    margin: 7px 0;
+    font-size: 14px;
+}
+
+.scratch-note {
+    text-align: center;
+    color: #d6d6ed;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.scratch-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+}
+
+.scratch-card {
+    position: relative;
+    height: 170px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #30215c, #101025);
+    border: 2px solid #d6b35b;
+    box-shadow: 0 5px 15px #0005;
+}
+
+.scratch-card-prize {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8px;
+}
+
+.scratch-card-prize .gift-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.scratch-card-prize .prize-amount {
+    color: #ffe27b;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.scratch-card-prize .prize-label {
+    color: white;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.scratch-card canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+    cursor: crosshair;
+    z-index: 2;
+}
+
+.scratch-card.scratched canvas {
+    display: none;
+}
+
+.scratch-card.scratched {
+    border-color: #54e49a;
+}
+
+.scratch-card.scratched .scratch-card-prize {
+    background: linear-gradient(145deg, #153e35, #10251f);
+}
+
+.scratch-card.scratched .gift-icon {
+    display: none;
+}
+
+.scratch-card.scratched .prize-amount {
+    font-size: 25px;
+    color: #6bffb1;
+}
+
+.scratch-status {
+    text-align: center;
+    margin-top: 20px;
+    color: #ffe18a;
+    font-size: 14px;
+}
+
+.scratch-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 25px 10px;
+    background: #ffffff10;
+    border-radius: 12px;
+    line-height: 1.8;
+}
+
+@media (max-width: 350px) {
+    .scratch-card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+
+<section id="vipScratchPage">
+
+    <div class="scratch-header">
+        <button class="scratch-back" onclick="closeVipScratch()">
+            ← ফিরে যান
+        </button>
+
+        <h2>🎁 স্ক্র্যাচ কার্ড</h2>
+    </div>
+
+    <div class="scratch-package-info">
+        <h3 id="scratchVipName">VIP প্যাকেজ</h3>
+        <p id="scratchVipPrice">প্যাকেজ মূল্য</p>
+        <p id="scratchDailyLimit">আজকের কার্ড</p>
+    </div>
+
+    <div class="scratch-note">
+        🎫 কার্ডের ওপর আঙুল দিয়ে ঘষুন।<br>
+        ✨ আবরণ মুছে গেলেই পুরস্কার দেখতে পাবেন।
+    </div>
+
+    <div id="scratchCardGrid" class="scratch-card-grid"></div>
+
+    <div id="scratchStatus" class="scratch-status"></div>
+
+</section>
+
+
+<script>
+(function () {
+    "use strict";
+
+    const VIP_SCRATCH_PACKAGES = {
+        1: {
+            name: "VIP 1",
+            price: 500,
+            days: 25,
+            dailyCards: 1,
+            minPrize: 1,
+            maxPrize: 6
+        },
+
+        2: {
+            name: "VIP 2",
+            price: 1000,
+            days: 40,
+            dailyCards: 2,
+            minPrize: 10,
+            maxPrize: 20
+        },
+
+        3: {
+            name: "VIP 3",
+            price: 1500,
+            days: 50,
+            dailyCards: 3,
+            minPrize: 20,
+            maxPrize: 25
+        },
+
+        4: {
+            name: "VIP 4",
+            price: 2000,
+            days: 60,
+            dailyCards: 4,
+            minPrize: 25,
+            maxPrize: 35
+        },
+
+        5: {
+            name: "VIP 5",
+            price: 3000,
+            days: 90,
+            dailyCards: 5,
+            minPrize: 35,
+            maxPrize: 46
+        }
+    };
+
+    const STORAGE_KEY = "iw_vip_scratch_data_v1";
+    const ACTIVE_VIP_KEY = "iw_active_scratch_vip";
+
+    let currentVip = 0;
+
+    function getToday() {
+        const now = new Date();
+
+        return [
+            now.getFullYear(),
+            String(now.getMonth() + 1).padStart(2, "0"),
+            String(now.getDate()).padStart(2, "0")
+        ].join("-");
+    }
+
+    function getAllData() {
+        try {
+            return JSON.parse(
+                localStorage.getItem(STORAGE_KEY) || "{}"
+            );
+        } catch (error) {
+            return {};
+        }
+    }
+
+    function saveAllData(data) {
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(data)
+        );
+    }
+
+    function makePrize(pkg) {
+        const amount =
+            Math.floor(
+                Math.random() *
+                (pkg.maxPrize - pkg.minPrize + 1)
+            ) + pkg.minPrize;
+
+        return amount;
+    }
+
+    function getTodayCards(level) {
+        const pkg = VIP_SCRATCH_PACKAGES[level];
+        const today = getToday();
+        const data = getAllData();
+
+        if (!data[level]) {
+            data[level] = {};
+        }
+
+        /*
+         * প্রতিদিন নতুন কার্ড তৈরি হবে।
+         * একই দিনে পেজ রিফ্রেশ করলে কার্ড নতুন করে তৈরি হবে না।
+         */
+        if (data[level].date !== today) {
+            const cards = [];
+
+            for (let i = 0; i < pkg.dailyCards; i++) {
+                cards.push({
+                    prize: makePrize(pkg),
+                    scratched: false
+                });
+            }
+
+            data[level] = {
+                date: today,
+                cards: cards
+            };
+
+            saveAllData(data);
+        }
+
+        return data[level].cards || [];
+    }
+
+    function showScratchPage() {
+        document.querySelectorAll(".page").forEach(function (page) {
+            page.classList.remove("active");
+        });
+
+        document.getElementById("vipScratchPage").style.display =
+            "block";
+
+        window.scrollTo(0, 0);
+    }
+
+    /*
+     * VIP কার্ডের BUY NOW বাটন থেকে এই ফাংশন চলবে।
+     *
+     * গুরুত্বপূর্ণ:
+     * এটি স্ক্র্যাচ পেজ খুলছে; এখানে বাস্তব পেমেন্ট
+     * বা ব্যালেন্স থেকে টাকা কাটার ব্যবস্থা নেই।
+     */
+    window.selectVip = function (level) {
+        const pkg = VIP_SCRATCH_PACKAGES[Number(level)];
+
+        if (!pkg) {
+            alert("সঠিক VIP প্যাকেজ নির্বাচন করুন।");
+            return;
+        }
+
+        currentVip = Number(level);
+
+        localStorage.setItem(
+            ACTIVE_VIP_KEY,
+            String(currentVip)
+        );
+
+        openVipScratch(currentVip);
+    };
+
+    function openVipScratch(level) {
+        const pkg = VIP_SCRATCH_PACKAGES[level];
+
+        if (!pkg) return;
+
+        currentVip = level;
+
+        document.getElementById("scratchVipName").textContent =
+            pkg.name + " — স্ক্র্যাচ কার্ড";
+
+        document.getElementById("scratchVipPrice").textContent =
+            "প্যাকেজ মূল্য: ৳" + pkg.price.toLocaleString("en-US");
+
+        document.getElementById("scratchDailyLimit").textContent =
+            "প্রতিদিন " + pkg.dailyCards + "টি কার্ড";
+
+        showScratchPage();
+        renderScratchCards(level);
+    }
+
+    function renderScratchCards(level) {
+        const pkg = VIP_SCRATCH_PACKAGES[level];
+        const cards = getTodayCards(level);
+
+        const grid = document.getElementById("scratchCardGrid");
+        const status = document.getElementById("scratchStatus");
+
+        grid.innerHTML = "";
+
+        let scratchedCount = 0;
+
+        cards.forEach(function (card, index) {
+            const wrapper = document.createElement("div");
+            wrapper.className = "scratch-card";
+
+            const prizeArea = document.createElement("div");
+            prizeArea.className = "scratch-card-prize";
+
+            const gift = document.createElement("div");
+            gift.className = "gift-icon";
+            gift.textContent = "🎁";
+
+            const amount = document.createElement("div");
+            amount.className = "prize-amount";
+
+            /*
+             * পুরস্কারের পরিমাণ প্রথমে দেখানো হবে না।
+             * কার্ড ঘষে খুললেই পরিমাণ দেখা যাবে।
+             */
+            amount.textContent = card.scratched
+                ? "৳" + card.prize
+                : "••••";
+
+            const label = document.createElement("div");
+            label.className = "prize-label";
+            label.textContent = card.scratched
+                ? "আপনার পুরস্কার"
+                : "ঘষে পুরস্কার জিতুন";
+
+            prizeArea.appendChild(gift);
+            prizeArea.appendChild(amount);
+            prizeArea.appendChild(label);
+
+            wrapper.appendChild(prizeArea);
+
+            if (card.scratched) {
+                wrapper.classList.add("scratched");
+                scratchedCount++;
+            } else {
+                const canvas = document.createElement("canvas");
+                wrapper.appendChild(canvas);
+
+                /*
+                 * DOM-এ পরিমাণ থাকলেও কার্ডের আবরণ
+                 * সরানো না পর্যন্ত তা দেখা যাবে না।
+                 */
+                setupScratchCanvas(
+                    canvas,
+                    wrapper,
+                    level,
+                    index
+                );
+            }
+
+            grid.appendChild(wrapper);
+        });
+
+        const remaining = cards.length - scratchedCount;
+
+        if (remaining > 0) {
+            status.textContent =
+                "আজ বাকি আছে " + remaining + "টি কার্ড।";
+        } else {
+            status.textContent =
+                "আজকের সব কার্ড খোলা হয়েছে। আগামীকাল আবার আসুন।";
+        }
+    }
+
+    function setupScratchCanvas(canvas, wrapper, level, cardIndex) {
+        const ctx = canvas.getContext("2d", {
+            willReadFrequently: true
+        });
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let revealed = false;
+        let checking = false;
+
+        function drawCover() {
+            const rect = wrapper.getBoundingClientRect();
+            const width = Math.max(1, Math.round(rect.width));
+            const height = Math.max(1, Math.round(rect.height));
+
+            canvas.width = width * 2;
+            canvas.height = height * 2;
+
+            canvas.style.width = width + "px";
+            canvas.style.height = height + "px";
+
+            ctx.setTransform(2, 0, 0, 2, 0, 0);
+            ctx.globalCompositeOperation = "source-over";
+
+            const gradient = ctx.createLinearGradient(
+                0, 0, width, height
+            );
+
+            gradient.addColorStop(0, "#ffe8a1");
+            gradient.addColorStop(0.35, "#b8872c");
+            gradient.addColorStop(0.65, "#f8d976");
+            gradient.addColorStop(1, "#8e621b");
+
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.fillStyle = "#49300d";
+            ctx.font = "bold 15px sans-serif";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("🎁 ঘষে খুলুন", width / 2, height / 2);
+
+            ctx.font = "11px sans-serif";
+            ctx.fillText(
+                "SCRATCH & WIN",
+                width / 2,
+                height / 2 + 23
+            );
+
+            ctx.globalCompositeOperation = "destination-out";
+        }
+
+        function getPosition(event) {
+            const rect = canvas.getBoundingClientRect();
+
+            return {
+                x: event.clientX - rect.left,
+                y: event.clientY - rect.top
+            };
+        }
+
+        function scratch(event) {
+            if (!isDrawing || revealed) return;
+
+            event.preventDefault();
+
+            const pos = getPosition(event);
+
+            ctx.beginPath();
+            ctx.lineWidth = 27;
+            ctx.lineCap = "round";
+            ctx.lineJoin = "round";
+
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+
+            lastX = pos.x;
+            lastY = pos.y;
+        }
+
+        function startScratch(event) {
+            if (revealed) return;
+
+            event.preventDefault();
+            isDrawing = true;
+
+            try {
+                canvas.setPointerCapture(event.pointerId);
+            } catch (error) {}
+
+            const pos = getPosition(event);
+
+            lastX = pos.x;
+            lastY = pos.y;
+
+            ctx.beginPath();
+            ctx.arc(pos.x, pos.y, 14, 0, Math.PI * 2);
+            ctx.fill();
+
+            checkScratchProgress();
+        }
+
+        function stopScratch() {
+            isDrawing = false;
+            checkScratchProgress();
+        }
+
+        function checkScratchProgress() {
+            if (revealed || checking) return;
+
+            checking = true;
+
+            /*
+             * কিছুক্ষণ পরপর পরীক্ষা করবে কতটা
+             * আবরণ মুছে গেছে।
+             */
+            setTimeout(function () {
+                checking = false;
+
+                if (revealed) return;
+
+                try {
+                    const pixels = ctx.getImageData(
+                        0, 0, canvas.width, canvas.height
+                    ).data;
+
+                    let transparent = 0;
+                    const total = pixels.length / 4;
+
+                    /*
+                     * দ্রুত পরীক্ষার জন্য প্রতি 8 পিক্সেল
+                     * পরপর নমুনা নেওয়া হচ্ছে।
+                     */
+                    for (let i = 3; i < pixels.length; i += 32) {
+                        if (pixels[i] < 80) {
+                            transparent++;
+                        }
+                    }
+
+                    const sampleCount = Math.ceil(total / 8);
+                    const ratio = transparent / sampleCount;
+
+                    if (ratio >= 0.42) {
+                        revealCard();
+                    }
+                } catch (error) {}
+            }, 120);
+        }
+
+        function revealCard() {
+            if (revealed) return;
+
+            revealed = true;
+            isDrawing = false;
+
+            const data = getAllData();
+            const today = getToday();
+
+            if (
+                !data[level] ||
+                data[level].date !== today ||
+                !data[level].cards ||
+                !data[level].cards[cardIndex]
+            ) {
+                renderScratchCards(level);
+                return;
+            }
+
+            data[level].cards[cardIndex].scratched = true;
+            saveAllData(data);
+
+            renderScratchCards(level);
+        }
+
+        canvas.addEventListener("pointerdown", startScratch);
+        canvas.addEventListener("pointermove", scratch);
+        canvas.addEventListener("pointerup", stopScratch);
+        canvas.addEventListener("pointercancel", stopScratch);
+        canvas.addEventListener("pointerleave", stopScratch);
+
+        drawCover();
+    }
+
+    window.closeVipScratch = function () {
+        document.getElementById("vipScratchPage").style.display =
+            "none";
+
+        const vipPage = document.getElementById("vip");
+
+        if (vipPage) {
+            vipPage.classList.add("active");
+        } else {
+            const home = document.getElementById("home");
+
+            if (home) {
+                home.classList.add("active");
+            }
+        }
+
+        window.scrollTo(0, 0);
+    };
+
+    /*
+     * পেজ রিফ্রেশ হলে স্ক্র্যাচ পেজ নিজে থেকে খুলবে না।
+     * আগের VIP প্যাকেজের কার্ডের অবস্থা সংরক্ষিত থাকবে।
+     */
+  <!-- ================= END VIP SCRATCH CARD SYSTEM ================= -->
+})();
+</script>
+
+<script>
+/* ===== ডিপোজিট ও উত্তোলনের JavaScript ===== */
+
+const PAYMENT_NUMBER = "01405058929";
+
+function getRequestList(key) {
+    try {
+        return JSON.parse(localStorage.getItem(key) || "[]");
+    } catch (error) {
+        return [];
+    }
+}
+
+function saveRequestList(key, list) {
+    localStorage.setItem(key, JSON.stringify(list));
+}
+
+function copyDepositNumber() {
+    const number = PAYMENT_NUMBER;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(number)
+            .then(() => alert("Send Money নম্বর কপি হয়েছে।"))
+            .catch(() => alert("Send Money নম্বর: " + number));
+    } else {
+        alert("Send Money নম্বর: " + number);
+    }
+}
+
+/* ===== ডিপোজিট অনুরোধ ===== */
+
+function submitDeposit() {
+    const method = document.getElementById("depositMethod").value;
+    const amount = Number(document.getElementById("depositAmount").value);
+    const sender = document.getElementById("senderNumber").value.trim();
+    const trxId = document.getElementById("transactionId").value.trim();
+    const screenshotInput = document.getElementById("depositScreenshot");
+    const message = document.getElementById("depositMessage");
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+        message.textContent = "সঠিক টাকার পরিমাণ লিখুন।";
+        return;
+    }
+
+    if (!sender || !trxId || !screenshotInput.files.length) {
+        message.textContent = "মোবাইল নম্বর, TrxID এবং স্ক্রিনশট দিন।";
+        return;
+    }
+
+    const file = screenshotInput.files[0];
+
+    if (!file.type.startsWith("image/")) {
+        message.textContent = "একটি ছবির স্ক্রিনশট নির্বাচন করুন।";
+        return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+        message.textContent = "স্ক্রিনশট ২ এমবির মধ্যে হতে হবে।";
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function () {
+        try {
+            const requests = getRequestList("iwbd_deposit_requests");
+
+            requests.unshift({
+                id: "DEP" + Date.now(),
+                method: method,
+                paymentType: "SEND MONEY",
+                paymentNumber: PAYMENT_NUMBER,
+                amount: amount,
+                senderNumber: sender,
+                trxId: trxId,
+                screenshot: reader.result,
+                status: "Pending",
+                createdAt: new Date().toLocaleString("bn-BD")
+            });
+
+            saveRequestList("iwbd_deposit_requests", requests);
+
+            message.textContent =
+                "অনুরোধ সংরক্ষিত হয়েছে। যাচাই না হওয়া পর্যন্ত ব্যালেন্স যোগ হবে না।";
+
+            document.getElementById("depositAmount").value = "";
+            document.getElementById("senderNumber").value = "";
+            document.getElementById("transactionId").value = "";
+            screenshotInput.value = "";
+
+            renderDepositHistory();
+        } catch (error) {
+            message.textContent =
+                "অনুরোধ সংরক্ষণ করা যায়নি। স্ক্রিনশট ছোট করে আবার চেষ্টা করুন।";
+        }
+    };
+
+    reader.onerror = function () {
+        message.textContent = "স্ক্রিনশট পড়া যায়নি। আবার চেষ্টা করুন।";
+    };
+
+    reader.readAsDataURL(file);
+}
+
+/* ===== উত্তোলনের অনুরোধ ===== */
+
+function submitWithdrawal() {
+    const method = document.getElementById("withdrawMethod").value;
+    const amount = Number(document.getElementById("withdrawAmount").value);
+    const number = document.getElementById("withdrawNumber").value.trim();
+    const message = document.getElementById("withdrawMessage");
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+        message.textContent = "সঠিক টাকার পরিমাণ লিখুন।";
+        return;
+    }
+
+    if (!number) {
+        message.textContent = "টাকা গ্রহণের মোবাইল নম্বর লিখুন।";
+        return;
+    }
+
+    const requests = getRequestList("iwbd_withdrawal_requests");
+
+    requests.unshift({
+        id: "WDR" + Date.now(),
+        method: method,
+        amount: amount,
+        receivingNumber: number,
+        status: "Pending",
+        createdAt: new Date().toLocaleString("bn-BD")
+    });
+
+    saveRequestList("iwbd_withdrawal_requests", requests);
+
+    message.textContent =
+        "উত্তোলনের অনুরোধ সংরক্ষিত হয়েছে। অনুমোদনের জন্য অপেক্ষা করুন।";
+
+    document.getElementById("withdrawAmount").value = "";
+    document.getElementById("withdrawNumber").value = "";
+
+    renderWithdrawalHistory();
+}
+
+/* ===== HTML নিরাপদে দেখানো ===== */
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, function (char) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[char];
+    });
+}
+
+/* ===== ডিপোজিটের ইতিহাস ===== */
+
+function renderDepositHistory() {
+    const container = document.getElementById("depositHistory");
+    if (!container) return;
+
+    const requests = getRequestList("iwbd_deposit_requests");
+
+    if (!requests.length) {
+        container.textContent = "এখনো কোনো ডিপোজিট অনুরোধ নেই।";
+        return;
+    }
+
+    container.innerHTML = requests.map(function (item) {
+        return `
+            <div class="request-item">
+                <b>অনুরোধ:</b> ${escapeHTML(item.id)}<br>
+                <b>মাধ্যম:</b> ${escapeHTML(item.method)}<br>
+                <b>পরিমাণ:</b> ৳${Number(item.amount).toFixed(2)}<br>
+                <b>TrxID:</b> ${escapeHTML(item.trxId)}<br>
+                <b>অবস্থা:</b> ${escapeHTML(item.status)}<br>
+                <b>তারিখ:</b> ${escapeHTML(item.createdAt)}
+            </div>
+        `;
+    }).join("");
+}
+
+/* ===== উত্তোলনের ইতিহাস ===== */
+
+function renderWithdrawalHistory() {
+    const container = document.getElementById("withdrawHistory");
+    if (!container) return;
+
+    const requests = getRequestList("iwbd_withdrawal_requests");
+
+    if (!requests.length) {
+        container.textContent = "এখনো কোনো উত্তোলনের অনুরোধ নেই।";
+        return;
+    }
+
+    container.innerHTML = requests.map(function (item) {
+        return `
+            <div class="request-item">
+                <b>অনুরোধ:</b> ${escapeHTML(item.id)}<br>
+                <b>মাধ্যম:</b> ${escapeHTML(item.method)}<br>
+                <b>পরিমাণ:</b> ৳${Number(item.amount).toFixed(2)}<br>
+                <b>গ্রহণের নম্বর:</b> ${escapeHTML(item.receivingNumber)}<br>
+                <b>অবস্থা:</b> ${escapeHTML(item.status)}<br>
+                <b>তারিখ:</b> ${escapeHTML(item.createdAt)}
+            </div>
+        `;
+    }).join("");
+}
+
+/* ===== পেজ খোলার সময় ইতিহাস দেখানো ===== */
+
+renderDepositHistory();
+renderWithdrawalHistory();
+
+</script>
+  <script>
+/* ===== অংক করে ইনকাম ===== */
+
+let mathCorrectAnswer = 8;
+
+function loadMathQuestion() {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+
+    mathCorrectAnswer = num1 + num2;
+
+    document.getElementById("mathQuestion").textContent =
+        num1 + " + " + num2 + " = কত?";
+
+    document.getElementById("mathAnswer").value = "";
+}
+
+function checkMathAnswer() {
+    const answerInput = document.getElementById("mathAnswer");
+    const message = document.getElementById("mathMessage");
+    const answer = Number(answerInput.value);
+
+    if (answerInput.value.trim() === "") {
+        message.textContent = "আগে অংকের উত্তর লিখুন।";
+        return;
+    }
+
+    if (answer !== mathCorrectAnswer) {
+        message.textContent = "❌ উত্তর ভুল হয়েছে। আবার চেষ্টা করুন।";
+        return;
+    }
+
+    const today = new Date().toISOString().slice(0, 10);
+    const key = "iwbd_math_" + today;
+    const completed = Number(localStorage.getItem(key) || 0);
+
+    if (completed >= 10) {
+        message.textContent = "আজকের ১০টি অংকের সীমা শেষ।";
+        return;
+    }
+
+    localStorage.setItem(key, completed + 1);
+
+    document.getElementById("mathCorrectCount").textContent =
+        completed + 1;
+
+    message.textContent =
+        "✅ সঠিক উত্তর! অংকটি সম্পন্ন হয়েছে।";
+
+    loadMathQuestion();
+}
+
+function updateMathCount() {
+    const today = new Date().toISOString().slice(0, 10);
+    const completed = Number(
+        localStorage.getItem("iwbd_math_" + today) || 0
+    );
+
+    const countElement = document.getElementById("mathCorrectCount");
+
+    if (countElement) {
+        countElement.textContent = completed;
+    }
+}
+
+loadMathQuestion();
+updateMathCount();
+  </script>
+  <script type="module">
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+import {
+  doc,
+  setDoc,
+  getDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+const auth = window.firebaseAuth;
+const db = window.firebaseDB;
+
+// রেজিস্ট্রেশন
+window.firebaseRegister = async function(email, password, referralCode = "") {
+  try {
+    const credential = await createUserWithEmailAndPassword(
+      auth, email, password
+    );
+
+    const uid = credential.user.uid;
+
+    await setDoc(doc(db, "users", uid), {
+      email: email,
+      balance: 0,
+      referralCode: "IWBD" + uid.substring(0, 8).toUpperCase(),
+      referredBy: referralCode || null,
+      createdAt: serverTimestamp()
+    });
+
+    return {
+      success: true,
+      message: "রেজিস্ট্রেশন সফল হয়েছে!"
+    };
+
+  } catch (error) {
+    return {
+      success: false,
+      message: "রেজিস্ট্রেশন হয়নি: " + error.message
+    };
+  }
+};
+
+// লগইন
+window.firebaseLogin = async function(email, password) {
+  try {
+    const credential = await signInWithEmailAndPassword(
+      auth, email, password
+    );
+
+    return {
+      success: true,
+      uid: credential.user.uid,
+      message: "লগইন সফল হয়েছে!"
+    };
+
+  } catch (error) {
+    return {
+      success: false,
+      message: "লগইন হয়নি: " + error.message
+    };
+  }
+};
+
+onAuthStateChanged(auth, user => {
+  if (user) {
+    console.log("Firebase ব্যবহারকারী লগইন করেছেন:", user.uid);
+  } else {
+    console.log("কোনো ব্যবহারকারী লগইন নেই।");
+  }
+});
+  </script>
+</body>
+</html>
